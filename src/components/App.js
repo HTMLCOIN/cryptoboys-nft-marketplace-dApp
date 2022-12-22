@@ -14,11 +14,22 @@ import Navbar from "./Navbar/Navbar";
 import MyCryptoBoys from "./MyCryptoBoys/MyCryptoBoys";
 import Queries from "./Queries/Queries";
 
+const projectId = '';   // <---------- your Infura Project ID
+
+const projectSecret = '';  // <---------- your Infura Secret
+// (for security concerns, consider saving these values in .env files)
+
+const auth = 'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64');
+
+
 const ipfsClient = require("ipfs-http-client");
 const ipfs = ipfsClient({
   host: "ipfs.infura.io",
   port: 5001,
   protocol: "https",
+  headers: {
+      authorization: auth,
+  },
 });
 
 class App extends Component {
@@ -83,13 +94,13 @@ class App extends Component {
   };
 
   loadWeb3 = async () => {
-    if (window.ethereum) {
-      window.web3 = new Web3(window.ethereum);
+    if (window.altmasq) {
+      window.web3 = new Web3(window.altmasq);
     } else if (window.web3) {
       window.web3 = new Web3(window.web3.currentProvider);
     } else {
       window.alert(
-        "Non-Ethereum browser detected. You should consider trying MetaMask!"
+        "Non-Htmlcoin browser detected. You should consider trying Altmasq!"
       );
     }
   };
@@ -147,7 +158,7 @@ class App extends Component {
   };
 
   connectToMetamask = async () => {
-    await window.ethereum.enable();
+    await window.altmasq.enable();
     this.setState({ metamaskConnected: true });
     window.location.reload();
   };
@@ -215,7 +226,7 @@ class App extends Component {
       previousTokenId = previousTokenId.toNumber();
       const tokenId = previousTokenId + 1;
       const tokenObject = {
-        tokenName: "Crypto Boy",
+        tokenName: "Crypto Boys Collection",
         tokenSymbol: "CB",
         tokenId: `${tokenId}`,
         name: name,
@@ -241,8 +252,8 @@ class App extends Component {
         },
       };
       const cid = await ipfs.add(JSON.stringify(tokenObject));
-      let tokenURI = `https://ipfs.infura.io/ipfs/${cid.path}`;
-      const price = window.web3.utils.toWei(tokenPrice.toString(), "Ether");
+      let tokenURI = `https://cryptobros.infura-ipfs.io/ipfs/${cid.path}`;
+      const price = window.web3.utils.toWei(tokenPrice.toString(), "ether");
       this.state.cryptoBoysContract.methods
         .mintCryptoBoy(name, tokenURI, price, colorsArray)
         .send({ from: this.state.accountAddress })
@@ -276,7 +287,7 @@ class App extends Component {
 
   changeTokenPrice = (tokenId, newPrice) => {
     this.setState({ loading: true });
-    const newTokenPrice = window.web3.utils.toWei(newPrice, "Ether");
+    const newTokenPrice = window.web3.utils.toWei(newPrice, "ether");
     this.state.cryptoBoysContract.methods
       .changeTokenPrice(tokenId, newTokenPrice)
       .send({ from: this.state.accountAddress })
