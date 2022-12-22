@@ -1,9 +1,9 @@
 # Crypto Boy NFT Marketplace
-<i>NFT marketplace DApp where users mint ERC721 implemented Crypto Boy NFTs.</i>
+<i>NFT marketplace DApp where users mint HRC721 implemented Crypto Boy NFTs.</i>
 #
 <img align="right" width="350" src="./image.png"></img>
 ### Features
-- Mint custom ERC721 implemented Crypto Boy Tokens.
+- Mint custom HRC721 implemented Crypto Boy Tokens.
 - Sell Crypto Boy tokens on the marketplace.
 - Set desired token price.
 - Toggle between keeping the token for sale and not for sale.
@@ -20,11 +20,10 @@
 - [Ganache](https://www.trufflesuite.com/ganache) - Personal blockchain for Ethereum development used to deploy contracts, develop DApps, and run tests.
 #
 ### Interact with the deployed DApp
-- Crypto Boy Marketplace DApp requires [Metamask](https://metamask.io/) browser wallet extension to interact with.
-- Connect metamask browser wallet to Kovan Test Network.
-- Request and get test etheres for the metamask account from [Kovan Faucet](https://gitter.im/kovan-testnet/faucet) to make transactions.
-- Crypto Boy Marketplace Smart Contract is deployed to Kovan Testnet - [0x420d2a6E87D87992EB01e5BFe762B3F437dBfD85](https://kovan.etherscan.io/address/0x420d2a6e87d87992eb01e5bfe762b3f437dbfd85)
-- Access Crypto Boy Marketplace DApp at [cryptoboys-NFT-marketplace](https://devpavan04.github.io/cryptoboys-nft-marketplace/) and start minting your Crypto Boys.
+- Crypto Boy Marketplace DApp requires [Altmasq](https://github.com/HTMLCOIN/metamask-extension/releases/) browser wallet extension to interact with.
+- Request and get HTML for the altmasq account from [Htmlcoin Faucet](https://gruvin.me/htmlcoin) to make transactions.
+- Crypto Boy Marketplace Smart Contract is deployed to Htmlcoin Mainnet - [0x2f1f618697481ababa29083fd9cd37adcd7a1656](https://explorer.htmlcoin.com/address/0x2f1f618697481ababa29083fd9cd37adcd7a1656)
+- Access Crypto Boy Marketplace DApp at [cryptoboys-NFT-marketplace](https://janus.htmlcoin.dev/cryptoboys/) and start minting your Crypto Boys.
 #
 ### Run the DApp Locally
 #### Install truffle
@@ -41,7 +40,7 @@ ganache-cli --port 7545
 ```
 #### Open new terminal window and clone this repository
 ```
-git clone https://github.com/devpavan04/cryptoboys-NFT-marketplace.git
+git clone https://github.com/htmlcoin/cryptoboys-NFT-marketplace.git
 ```
 #### Install dependencies
 ```
@@ -64,5 +63,5 @@ truffle test
 ```
 npm start
 ```
-- Open metamask browser wallet and connect network to Localhost 7545.
+- Open altmasq browser wallet and connect network to Localhost 4889.
 - Import accounts from ganache-cli into the metamask browser wallet to make transactions on the DApp.
